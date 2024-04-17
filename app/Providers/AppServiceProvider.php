@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Message;
 use Illuminate\Support\ServiceProvider;
+use Route;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Route::model('message', Message::class, function ($value) {
+            return Message::where('id', $value)->firstOrFail();
+        });
     }
 }
