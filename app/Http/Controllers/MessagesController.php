@@ -5,20 +5,21 @@ namespace App\Http\Controllers;
 use App\Data\MessagePostData;
 use App\Data\MessagePutData;
 use App\Enums\MessageStatusEnum;
-use App\Enums\MessageTypesEnum;
+use App\Http\Resources\MessageResource;
+use App\Models\AuditLogModel;
 use App\Models\Message;
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class MessagesController extends Controller
 {
-    public function get() {
+    public function get(): ResourceCollection {
         $messages = Message::where('status', MessageStatusEnum::Waiting)->get();
 
-        return response()->json($messages);
+        return MessageResource::collection($messages);
     }
 
-    public function post(MessagePostData $data) {
+    public function post(MessagePostData $data): MessageResource {
         $message = new Message([
             'type' => $data->type,
             'status' => MessageStatusEnum::Waiting,
@@ -29,13 +30,19 @@ class MessagesController extends Controller
 
         $message->save();
 
-        return response()->json($message);
+        return new MessageResource($message);
     }
 
-    public function put(Message $message, MessagePutData $data) {
+    public function put(Message $message, MessagePutData $data): MessageResource {
         $message->status = $data->status;
         $message->save();
 
-        return response()->json($message);
+        $auditLog = new AuditLogModel([
+            'message_id' => $message->id,
+            'actioned_by' => Auth::user()->id,
+        ]);
+        $auditLog->save();
+
+        return new MessageResource($message);
     }
 }

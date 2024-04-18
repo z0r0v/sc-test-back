@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Data\AuthData;
+use App\Http\Resources\AuthResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function get(AuthData $data): string {
+    public function get(AuthData $data): AuthResource {
         $user = User::query()
             ->where('email', $data->email)
             ->first();
@@ -27,8 +28,6 @@ class AuthController extends Controller
             ]);
         }
 
-        return $user
-            ->createToken('sdf')
-            ->plainTextToken;
+        return new AuthResource($user);
     }
 }

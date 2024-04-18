@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\RolesEnum;
-use Auth;
+use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class UsersController extends Controller
 {
-    public function get() {
-        return response()->json(User::all());
+    public function get(): ResourceCollection {
+        return UserResource::collection(User::all());
     }
 }

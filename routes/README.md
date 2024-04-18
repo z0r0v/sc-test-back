@@ -6,22 +6,26 @@ https://laradock.io/getting-started/
 ```
 docker-compose up -d --build nginx php-fpm postgres workspace
 ```
-### Move to docker container
 ```
 docker exec -it laradock-workspace-1 bash
-```
-### Start migrate data base
-```
-php artisan migrate
-```
-### set mock data
-```
-php artisan db:seed
 ```
 ### instal dependecis
 ```
 cd /var/www/sc-test-back#
-```
-```
 composer install
 ```
+####Console Comand create
+```
+php artisan make:command ComandName
+```
+#### Second Up
+#### cd ../laradock
+```
+docker-compose up -d nginx php-fpm postgres workspace
+```
+
+### Build run
+```
+npm run dev 
+```
+
