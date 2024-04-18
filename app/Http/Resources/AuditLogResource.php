@@ -25,8 +25,17 @@ class AuditLogResource extends JsonResource
                 'status' => $this->resource->message->status,
                 'message' => $this->resource->message->message,
                 'item_id' => $this->resource->message->item_id,
+                'player_id' => $this->resource->message->player_id,
                 'created_by' => $this->resource->message->created_by,
                 'created_at' => $this->resource->message->created_at,
+                'item' => [
+                    'id' => $this->resource->message->item->id,
+                    'name' => $this->resource->message->item->name,
+                ],
+                'player' => [
+                    'id' => $this->resource->message->player->id,
+                    'name' => $this->resource->message->player->name,
+                ],
             ],
             'actioned_by' => [
                 'id' => $this->resource->actionedBy->id,

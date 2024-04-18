@@ -19,10 +19,13 @@ return new class extends Migration
             $table->enum('status', array_column(MessageStatusEnum::cases(), 'value'))
                 ->default(MessageStatusEnum::Waiting->value);
             $table->text('message')->nullable();
-            $table->text('item_id')->nullable();
+            $table->unsignedBigInteger('item_id')->nullable();
+            $table->unsignedBigInteger('player_id');
             $table->unsignedBigInteger('created_by');
             $table->timestamps();
 
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('player_id')->references('id')->on('players');
             $table->foreign('created_by')->references('id')->on('users');
         });
     }

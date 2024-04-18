@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\AuditLogController;
 use App\Enums\RolesEnum;
+use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\ItemController;
 
 Route::get('auth', [AuthController::class, 'get']);
 
@@ -17,6 +19,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::put('messages/{message}', [MessagesController::class, 'put'])->middleware(['allowRole:' . RolesEnum::Editor->value]);
 
     Route::get('audit_log', [AuditLogController::class, 'get']);
+
+    Route::get('players', [PlayerController::class, 'get']);
+    Route::get('items', [ItemController::class, 'get']);
 });
 
 

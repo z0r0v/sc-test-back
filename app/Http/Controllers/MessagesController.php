@@ -25,6 +25,7 @@ class MessagesController extends Controller
             'status' => MessageStatusEnum::Waiting,
             'message' => $data->message,
             'item_id' => $data->item_id,
+            'player_id' => $data->player_id,
             'created_by' => Auth::user()->id,
         ]);
 
