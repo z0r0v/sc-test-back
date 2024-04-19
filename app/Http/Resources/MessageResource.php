@@ -24,6 +24,7 @@ class MessageResource extends JsonResource
             'item_id' => $this->resource->item_id,
             'player_id' => $this->resource->player_id,
             'created_by' => $this->resource->created_by,
+            'created_at' => $this->resource->created_at,
         ];
     }
 }
