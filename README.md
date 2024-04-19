@@ -1,7 +1,11 @@
 ## Inslall laradock and configure
-https://laradock.io/getting-started/
+[laradock](https://laradock.io/getting-started/)
+
+## Install docker
+[docker](https://docs.docker.com/engine/install/)
 
 ### Docker Up
+
 #### cd ../laradock
 ```
 docker-compose up -d --build nginx php-fpm postgres workspace
