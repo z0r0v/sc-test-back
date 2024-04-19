@@ -1,9 +1,8 @@
-## Inslall laradock and configure
-[laradock](https://laradock.io/getting-started/)
-
 ## Install docker
 [docker](https://docs.docker.com/engine/install/)
 
+## Install laradock and configure container
+[laradock](https://laradock.io/getting-started/)
 ### Docker Up
 
 #### cd ../laradock
