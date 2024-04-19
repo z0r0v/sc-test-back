@@ -29,8 +29,7 @@ class AuditLogResource extends JsonResource
                 'created_by' => $this->resource->message->created_by,
                 'created_at' => $this->resource->message->created_at,
                 'item' => [
-                    'id' => $this->resource->message->item->id,
-                    'name' => $this->resource->message->item->name,
+                    'id' => $this->resource->message->item_id,
                 ],
                 'player' => [
                     'id' => $this->resource->message->player->id,
