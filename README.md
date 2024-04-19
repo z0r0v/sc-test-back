@@ -17,11 +17,11 @@ docker exec -it laradock-workspace-1 bash
 ```
 php artisan migrate
 ```
-### set mock data
+### Set mock data
 ```
 php artisan db:seed
 ```
-### instal dependecis
+### Instal dependecis
 ```
 cd /var/www/sc-test-back#
 ```
