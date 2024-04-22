@@ -1,0 +1,1885 @@
+{
+	"info": {
+		"_postman_id": "d0a09d29-9260-47b7-ad7d-81e6d5a97834",
+		"name": "LTS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25987339",
+		"_collection_link": "https://cloudy-escape-127779.postman.co/workspace/LTS-Team~69e0d457-024d-451d-9ba9-14d08bfc4538/collection/3913264-d0a09d29-9260-47b7-ad7d-81e6d5a97834?action=share&source=collection_link&creator=25987339"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "auth@login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"bearer\", jsonData.result.token.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"auth@login\",\n    \"params\": {\n        \"user_id\": \"\",\n        \"device_name\": \"some device name\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth"
+							]
+						},
+						"description": "```\n#[Nullable, Uuid, Exists(User::class, 'id')]\npublic readonly ?string $user_id,\n#[Required, StringType]\npublic readonly string  $device_name,\n```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "user@current",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"user@current\",\n    \"params\": {},\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user@updateProfile",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"user@updateProfile\",\n    \"params\": {\n        \"name\": \"12333\",\n        \"email\": \"qwe@qwe.qw\",\n        \"phone_country\": \"US\",\n        \"phone\": \"+375293333333\",\n        \"birthday_at\": \"03/06/2023\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, StringType, Max(255)]\npublic readonly string $name,\n#[Required, Email, Max(255)]\npublic readonly string $email,\n#[Nullable, StringType, Max(255)]\npublic readonly string $phone,\n#[Nullable, Date]\npublic readonly string $birthday_at,\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "user@updateSetting",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"user@updateSetting\",\n    \"params\": {\n        \"theme\": \"light\",\n        \"background\": \"background1\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, StringType, Max(255)]\npublic readonly string $name,\n#[Required, Email, Max(255)]\npublic readonly string $email,\n#[Nullable, StringType, Max(255)]\npublic readonly string $phone,\n#[Nullable, Date]\npublic readonly string $birthday_at,\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "user@connect",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"user@connect\",\n    \"params\": {\n        \"firebase_id\": \"string\",\n        \"provider_id\": \"string\",\n        \"email\": \"string@asdasd.asd\",\n        \"family_name\": \"string\",\n        \"given_name\": \"string\",\n        \"name\": \"string\",\n        \"phoneNumber\": \"string\",\n        \"avatar_url\": \"string\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, StringType, Unique('users', 'firebase_id'), Max(50)]\npublic readonly string  $firebase_id,\n#[Required, StringType, Max(50)]\npublic readonly string  $provider_id,\n#[Nullable, Max(255), Email, Unique('users', 'email')]\npublic readonly ?string $email,\n#[Nullable, StringType, Max(255)]\npublic readonly ?string $family_name,\n#[Nullable, StringType, Max(255)]\npublic readonly ?string $given_name,\n#[Nullable, StringType, Max(255)]\npublic readonly ?string $name,\n#[Nullable, StringType, Max(255)]\npublic readonly ?string $phone,\n#[Nullable, StringType, Max(255)]\npublic readonly ?string $avatar_url,\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "user@allData",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"user@allData\",\n    \"params\": {},\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user@deleteAvatar",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"user@deleteAvatar\",\n    \"params\": {},\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user@incrementUsageTime",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"user@incrementUsageTime\",\n    \"params\": {},\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "scroll",
+			"item": [
+				{
+					"name": "scroll@getAll",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"scroll@getAll\",\n    \"params\": {},\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "scroll@create",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"scroll@create\",\n    \"params\": {\n        \"name\": \"qwe123\",\n        \"group_id\": \"\",\n        \"icon\": \"home\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[StringType]\npublic readonly ?string $name,\n#[Nullable, Uuid, UserHaveGroup]\npublic readonly ?string $group_id,\n#[Enum(ScrollIconEnum::class)]\npublic readonly string $icon,\n\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "scroll@update",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"scroll@update\",\n    \"params\": {\n        \"scroll_id\": \"98d1f93e-2f05-47ea-ae6e-39a71d172b87\",\n        \"name\": \"qwe123\",\n        \"group_id\": \"\",\n        \"icon\": \"cake\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[StringType]\npublic readonly ?string $name,\n#[Nullable, Uuid, UserHaveGroup]\npublic readonly ?string $group_id,\n#[Enum(ScrollIconEnum::class)]\npublic readonly string $icon,\n\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "scroll@delete",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"scroll@delete\",\n    \"params\": {\n        \"scroll_id\": \"qwe123\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[StringType]\npublic readonly ?string $name,\n#[Nullable, Uuid, UserHaveGroup]\npublic readonly ?string $group_id,\n#[Enum(ScrollIconEnum::class)]\npublic readonly string $icon,\n\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "scroll@addFavorite",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"scroll@addFavorite\",\n    \"params\": {\n        \"scroll_id\": \"98a522fc-baf0-4f35-a417-f72398e451eb\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, Uuid, UserHaveAccessToScroll]\npublic readonly string $scroll_id,\n#[Uuid, Exists(Product::class, 'id')]\npublic readonly string $product_id,\n#[RequiredWithout('product_id'), StringType, Max(255)]\npublic readonly string $product_name,\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "scroll@deleteFavorite",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"scroll@deleteFavorite\",\n    \"params\": {\n        \"scroll_id\": \"98a522fc-baf0-4f35-a417-f72398e451eb\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, Uuid, UserHaveAccessToScroll]\npublic readonly string $scroll_id,\n#[Uuid, Exists(Product::class, 'id')]\npublic readonly string $product_id,\n#[RequiredWithout('product_id'), StringType, Max(255)]\npublic readonly string $product_name,\n```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "scroll_product",
+			"item": [
+				{
+					"name": "scroll_product@create",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"scroll_product@create\",\n    \"params\": {\n        \"scroll_id\": \"98a522fc-baf0-4f35-a417-f72398e451eb\",\n        \"product_id\": null,\n        \"product_name\": \"aaaaaa\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, Uuid, UserHaveAccessToScroll]\npublic readonly string $scroll_id,\n#[Uuid, Exists(Product::class, 'id')]\npublic readonly string $product_id,\n#[RequiredWithout('product_id'), StringType, Max(255)]\npublic readonly string $product_name,\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "scroll_product@update",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"scroll_product@update\",\n    \"params\": {\n        \"scroll_product_id\": \"68e87069-5991-454c-a354-f30ad6b9bda4\",\n        \"product_id\": \"98d1f93e-7822-4042-966f-a4bf36a6a13f\",\n        \"product_name\": \"aaaaaaaaasda\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, Uuid, UserHaveAccessToScroll]\npublic readonly string $scroll_id,\n#[Uuid, Exists(Product::class, 'id')]\npublic readonly string $product_id,\n#[RequiredWithout('product_id'), StringType, Max(255)]\npublic readonly string $product_name,\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "scroll_product@delete",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"scroll_product@delete\",\n    \"params\": {\n        \"scroll_product_id\": \"98a53753-41d3-4923-b244-48dddf675429\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n        #[Required, Uuid, Exists(ScrollProduct::class, 'id'), UserHaveAccessToScrollViaScrollProductId]\n        public readonly string $scroll_product_id,\n\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "scroll_product@updateStatus",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"scroll_product@updateStatus\",\n    \"params\": {\n        \"scroll_product_id\": \"9893bf26-ca2a-44a8-a5f8-5719e3431ce6\",\n        \"status\": \"\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, Uuid, Exists(ScrollProduct::class, 'id'), UserHaveAccessToScrollViaScrollProductId]\npublic readonly string $scroll_product_id,\n#[Required, Enum(ProductInScrollStatusEnum::class)]\npublic readonly ProductInScrollStatusEnum $status,\n\n```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "product@search",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"product@search\",\n    \"params\": {\n        \"query\": \"qwe\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product@getAll",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"product@getAll\",\n    \"params\": {},\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "group",
+			"item": [
+				{
+					"name": "group@create",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"group@create\",\n    \"params\": {\n        \"name\": \"qwdqwd\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "group@update",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"group@update\",\n    \"params\": {\n        \"group_id\": \"98d7eab7-c587-4341-b4d2-17480f167b13\",\n        \"name\": \"qwdqwd123\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "group@delete",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"group@delete\",\n    \"params\": {\n        \"group_id\": \"98d7fb13-780b-4be8-87cb-95886c3f33c6\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "group@addUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"group@addUser\",\n    \"params\": {\n        \"user_id\": \"98d1f93d-ec17-4bff-b574-7b772d29d335\",\n        \"group_id\": \"98d7eab7-c587-4341-b4d2-17480f167b13\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "group@removeUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"group@removeUser\",\n    \"params\": {\n        \"user_id\": \"98d1f93d-ec17-4bff-b574-7b772d29d335\",\n        \"group_id\": \"98d7eab7-c587-4341-b4d2-17480f167b13\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "group@removeMyself",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"group@removeUser\",\n    \"params\": {\n        \"group_id\": \"98d7eab7-c587-4341-b4d2-17480f167b13\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "share",
+			"item": [
+				{
+					"name": "share@createGroup",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"share@createGroup\",\n    \"params\": {\n        \"group_id\": \"98ebf719-d17d-4661-900a-c5a854234962\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "share@quitScroll",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"share@quitScroll\",\n    \"params\": {\n        \"scroll_id\": \"98ebf719-d17d-4661-900a-c5a854234962\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "share@get",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"share@get\",\n    \"params\": {\n        \"share_id\": \"33348cdd-7bfe-4ba5-bee4-a44a70b66a34\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "share@acceptGroup",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"share@acceptGroup\",\n    \"params\": {\n        \"share_id\": \"76cc00e0-c018-4e21-937a-18d567b36890\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "share@acceptScroll",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"share@acceptScroll\",\n    \"params\": {\n        \"share_id\": \"2dbfe748-06c6-4274-8f3e-09af7f6a6fd2\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "share@createScroll",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"share@createScroll\",\n    \"params\": {\n        \"scroll_id\": \"98ebbaf9-23bd-4449-bb34-d475741728ea\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notifications",
+			"item": [
+				{
+					"name": "notification@update",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"notification@markviewed\",\n    \"params\": {\n        \"id\": \"20c2ad79-f3ad-44bb-a125-bc73a875a96e\",\n        \"$user_id\":\"996c9083-5b0b-447f-9107-e19f23c3f5d2\",\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "billing",
+			"item": [
+				{
+					"name": "billing@createAndroid",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"billing@create\",\n    \"params\": {\n        \"purchase_token\": \"asdfadsfasddsf\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "billing@createIos",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"billing@createIos\",\n    \"params\": {\n        \"transaction_id\": \"2000000420041321\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "review",
+			"item": [
+				{
+					"name": "review@create",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"review@create\",\n    \"params\": {\n        \"rating\": 1,\n        \"text\": \"govno\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "auth@signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"bearer\", jsonData.result.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_auth@login\",\n    \"params\": {\n        \"email\": \"kuras.soft@gmail.com\",\n        \"password\": \"z0r0v3037+\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth"
+							]
+						},
+						"description": "``` php\n#[Required, Exists(User::class, 'firebase_id')]\npublic readonly ?string $firebase_id,\n#[Required, StringType]\npublic readonly string  $device_name,\n\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "admin_category@getCategoryLang",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"bearer\", jsonData.result.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 22|1U1u2SROLBE3j1HaqJq9xWjg4HAnTGMPG2aoA9ET",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_category@getByLanguage\",\n      \"params\": {\n        \"lang_id\": \"1\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, Exists(User::class, 'firebase_id')]\npublic readonly ?string $firebase_id,\n#[Required, StringType]\npublic readonly string  $device_name,\n\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "admin_product@getByLanguage",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"bearer\", jsonData.result.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 22|1U1u2SROLBE3j1HaqJq9xWjg4HAnTGMPG2aoA9ET",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_product@getProduct\",\n      \"params\": {\n        \"lang_id\": \"1\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, Exists(User::class, 'firebase_id')]\npublic readonly ?string $firebase_id,\n#[Required, StringType]\npublic readonly string  $device_name,\n\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "admin_category@updateCategory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"bearer\", jsonData.result.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 22|1U1u2SROLBE3j1HaqJq9xWjg4HAnTGMPG2aoA9ET",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_category@saveCategory\",\n      \"params\": {\n        \"id\": \"1\"\n        \"name\": \"\",\n        \"parent_id\":\"parent_id\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, Exists(User::class, 'firebase_id')]\npublic readonly ?string $firebase_id,\n#[Required, StringType]\npublic readonly string  $device_name,\n\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "admin_category@getCategoryIcons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"bearer\", jsonData.result.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 22|1U1u2SROLBE3j1HaqJq9xWjg4HAnTGMPG2aoA9ET",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_category@getCategoryIcons\",\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, Exists(User::class, 'firebase_id')]\npublic readonly ?string $firebase_id,\n#[Required, StringType]\npublic readonly string  $device_name,\n\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "admin_product@updateProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"bearer\", jsonData.result.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 22|1U1u2SROLBE3j1HaqJq9xWjg4HAnTGMPG2aoA9ET",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_product@update\",\n      \"params\": {\n        \"id\": \"1\"\n        \"name\": \"\",\n        \"parent_id\":\"parent_id\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1"
+							]
+						},
+						"description": "``` php\n#[Required, Exists(User::class, 'firebase_id')]\npublic readonly ?string $firebase_id,\n#[Required, StringType]\npublic readonly string  $device_name,\n\n```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "!_TO_COPY",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"test@test\",\n    \"params\": {},\n    \"id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/v1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload_avatar",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": "/Users/yauhenikalashnikau/Pictures/IMG_1257.JPG"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/upload/avatar",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"upload",
+						"avatar"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearer}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

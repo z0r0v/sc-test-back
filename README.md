@@ -28,3 +28,5 @@ cd /var/www/sc-test-back#
 ```
 composer install
 ```
+### Postman config
+LTS.postman_collection.json
